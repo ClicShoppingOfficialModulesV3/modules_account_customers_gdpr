@@ -41,6 +41,6 @@
         }
       }
 
-      CLICSHOPPING::redirect('CLICSHOPPING::link(null, 'Account&Main');
+      CLICSHOPPING::redirect(null, 'Account&Main');
     }
   }

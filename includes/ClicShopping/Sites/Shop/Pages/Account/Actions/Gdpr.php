@@ -25,7 +25,7 @@
 
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
-        CLICSHOPPING::redirect('CLICSHOPPING::link(null, 'Account&Gdpr');
+        CLICSHOPPING::redirect(null, 'Account&Gdpr');
       }
 
 // templates
