@@ -22,6 +22,9 @@
       $CLICSHOPPING_Template = Registry::get('Template');
       $CLICSHOPPING_NavigationHistory = Registry::get('NavigationHistory');
       $CLICSHOPPING_Language = Registry::get('Language');
+      $CLICSHOPPING_Hooks = Registry::get('Hooks');
+
+      $CLICSHOPPING_Hooks->call('Gdpr', 'PreAction');
 
       if (!$CLICSHOPPING_Customer->isLoggedOn()) {
         $CLICSHOPPING_NavigationHistory->setSnapshot();
