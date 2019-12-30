@@ -22,6 +22,9 @@
     protected $countMyFeedback;
     protected $deleteMyFeedback;
 
+    /**
+     * @return mixed
+     */
     public function getCheck()
     {
       $CLICSHOPPING_Db = Registry::get('Db');
@@ -43,17 +46,29 @@
       return $Qcheck;
     }
 
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
-      if ($this->getCheck() === true) {
-        $output = '<div>';
-        $output .= '<label class="checkbox-inline">';
-        $output .= HTML::checkboxField('delete_my_feedback');
-        $output .= '</label>';
-        $output .= CLICSHOPPING::getDef('module_account_customers_gdpr_delete_my_orders_feedback') . ' (' . CLICSHOPPING::getDef('module_account_customers_gdpr_count_orders_feedback') . ' : ' . $this->count . ')';
-        $output .= '</div>';
+      $output = '';
 
-        return $output;
+      if ($this->getCheck() === true) {
+        $output .= '<div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <div class="separator"></div>
+                           ' . CLICSHOPPING::getDef('module_account_customers_gdpr_delete_my_orders_feedback') . ' (' . CLICSHOPPING::getDef('module_account_customers_gdpr_count_orders_feedback') . ' : ' . $this->count . ')' . '
+                          <label class="switch">
+                            ' . HTML::checkboxField('delete_my_feedback', null, null, 'class="success"') . '
+                            <span class="slider"></span>
+                          </label>
+                      </li>
+                    </ul>
+                  </div>
+                 ';
       }
+
+      return $output;
     }
   }

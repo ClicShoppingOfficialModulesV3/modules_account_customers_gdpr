@@ -18,10 +18,10 @@
 
   class AccountGdprNoIp
   {
-
-    protected $IpAddress;
-
-    public function getIpAddress()
+    /**
+     * @return string
+     */
+    private function getIpAddress(): string
     {
       $CLICSHOPPING_Db = Registry::get('Db');
       $CLICSHOPPING_Customer = Registry::get('Customer');
@@ -38,14 +38,24 @@
       return $ip_address;
     }
 
-    public function display()
+    /**
+     * @return string
+     */
+    public function display(): string
     {
-      $output = '<div>';
-      $output .= '<label class="checkbox-inline">';
-      $output .= HTML::checkboxField('no_ip_address', $this->getIpAddress(), $this->getIpAddress());
-      $output .= '</label>';
-      $output .= CLICSHOPPING::getDef('module_account_customers_gdpr_no_ip_address');
-      $output .= '</div>';
+      $output = '<div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item">
+                        <div class="separator"></div>
+                           ' . CLICSHOPPING::getDef('module_account_customers_gdpr_no_ip_address') . '
+                          <label class="switch">
+                            ' . HTML::checkboxField('no_ip_address', $this->getIpAddress(), $this->getIpAddress(), 'class="success"') . '
+                            <span class="slider"></span>
+                          </label>
+                      </li>
+                    </ul>
+                  </div>
+                 ';
 
       return $output;
     }
